@@ -1,0 +1,42 @@
+CREATE
+OR REPLACE VIEW public.view_tm_employee_tasks AS
+SELECT vt.id,
+       vt.parent_id,
+       vt.folder_id,
+       vt.type_id,
+       vt.title,
+       vt.status_name,
+       vt.priority_name,
+       vt.type_name,
+       vt.status_id,
+       vt.priority_id,
+       vt.is_plan,
+       vt.expected_result,
+       vt.actual_result,
+       vt.expected_duration,
+       vt.actual_duration,
+       vt.description,
+       vt.begin_date,
+       vt.end_date,
+       vt.created_by,
+       vt.created_at,
+
+       vre.id                related_employee_id,
+       vre.relation_type_id,
+       vre.employee_id,
+       vre.user_id,
+       vre.staff_id,
+       vre.expected_duration employee_expected_duration,
+       vre.actual_duration   employee_actual_duration,
+       vre.begin_date        employee_begin_date,
+       vre.name              relation_type_name,
+       vre.type              relation_type_type,
+       vre.position_name,
+       vre.department_name,
+       vre.first_name,
+       vre.last_name,
+       vre.middle_name,
+       vre.language_code
+FROM view_tm_related_employees vre
+         LEFT JOIN view_tm_tasks vt ON vre.task_id = vt.id
+

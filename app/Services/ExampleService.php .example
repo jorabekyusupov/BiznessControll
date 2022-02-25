@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Services;
+
+use App\Services\Service;
+
+class ExampleService extends Service
+{
+
+    public function __construct(Repository $repository)
+    {
+        $this->repository = $repository;
+    }
+}
